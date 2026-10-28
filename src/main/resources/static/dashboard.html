@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        TASHKEELA Dashboard
+    </title>
+
+
+    <link rel="stylesheet" href="/style.css">
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+
+    <div class="logo-area">
+
+
+        <img src="/images/logo.png">
+
+
+
+        <div class="logo-title">
+
+            TASHKEELA
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="nav-links">
+
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+
+
+        <a href="players.html">
+            Players
+        </a>
+
+
+
+        <a href="my-team.html">
+            My Team
+        </a>
+
+
+
+        <a href="clubs.html">
+            Clubs
+        </a>
+
+
+
+        <a href="matches.html">
+            Matches
+        </a>
+
+
+
+        <a href="ai.html">
+            AI Advisor
+        </a>
+
+
+
+        <a href="leaderboard.html">
+            Leaderboard
+        </a>
+
+
+
+
+
+        <button class="language-btn"
+                onclick="changeLanguage()">
+
+            AR
+
+        </button>
+
+
+
+
+
+        <a onclick="logout()">
+
+            Logout
+
+        </a>
+
+
+
+    </div>
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+
+
+
+    <h1>
+
+        Welcome to TASHKEELA
+
+    </h1>
+
+
+
+    <p>
+
+        Oman Fantasy Football League
+
+    </p>
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                Fantasy Points
+
+            </h3>
+
+
+            <h1>
+
+                2450
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                Team Value
+
+            </h3>
+
+
+            <h1>
+
+                100M
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                League Rank
+
+            </h3>
+
+
+            <h1>
+
+                #24
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                AI Rating
+
+            </h3>
+
+
+            <h1>
+
+                92%
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+
+
+    <!-- AI -->
+
+    <div class="ai-box">
+
+
+
+        <h2>
+
+            🤖 AI Recommendation
+
+        </h2>
+
+
+
+
+        <p>
+
+            Your team needs a stronger midfielder.
+
+            AI recommends selecting high performance Omani players.
+
+        </p>
+
+
+
+
+
+        <br>
+
+
+
+
+
+        <a href="ai.html">
+
+
+            <button class="btn">
+
+                Open AI Advisor
+
+            </button>
+
+
+        </a>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+    <h1>
+
+        Top Omani Players
+
+    </h1>
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+    <div class="players-grid">
+
+
+
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+
+            <h2>
+
+                Ahmed Al Khausi
+
+            </h2>
+
+
+
+            <p>
+
+                Al Seeb FC
+
+            </p>
+
+
+
+            <p class="rating">
+
+                88 ⭐
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 150
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+
+            <h2>
+
+                Ali Al Habsi
+
+            </h2>
+
+
+
+            <p>
+
+                Dhofar FC
+
+            </p>
+
+
+
+            <p class="rating">
+
+                86 ⭐
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 140
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+
+            <h2>
+
+                Omar Al Rashdi
+
+            </h2>
+
+
+
+            <p>
+
+                Al Nahda FC
+
+            </p>
+
+
+
+            <p class="rating">
+
+                90 ⭐
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 170
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<script src="/script.js"></script>
+
+
+
+</body>
+
+
+</html>

@@ -2,7 +2,11 @@ package com.omanfootball.manager.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -19,49 +23,112 @@ public class MatchController {
 
 
 
-    private final MatchService matchService;
+    private final MatchService service;
+
+
 
 
 
     @GetMapping
-    public List<Match> getMatches(){
-
-        return matchService.getAllMatches();
-
-    }
+    public ResponseEntity<List<Match>> getAll() {
 
 
 
-    @PostMapping
-    public Match create(
-            @RequestBody Match match
-    ){
+        return ResponseEntity.ok(
+                service.getAllMatches()
+        );
 
-        return matchService.createMatch(match);
+
 
     }
+
+
 
 
 
     @GetMapping("/{id}")
-    public Match getMatch(
-            @PathVariable Long id
-    ){
+    public ResponseEntity<Match> getById(
 
-        return matchService.getMatchById(id);
+            @PathVariable Long id
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.getMatchById(id)
+        );
+
+
 
     }
 
 
 
+
+
+    @PostMapping
+    public ResponseEntity<Match> create(
+
+            @RequestBody Match match
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.createMatch(match)
+        );
+
+
+
+    }
+
+
+
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Match> update(
+
+            @PathVariable Long id,
+
+            @RequestBody Match match
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.updateMatch(id, match)
+        );
+
+
+
+    }
+
+
+
+
+
     @DeleteMapping("/{id}")
-    public String delete(
+    public ResponseEntity<String> delete(
+
             @PathVariable Long id
-    ){
 
-        matchService.deleteMatch(id);
+    ) {
 
-        return "Match deleted";
+
+
+        service.deleteMatch(id);
+
+
+
+        return ResponseEntity.ok(
+                "Match deleted successfully"
+        );
+
+
 
     }
 

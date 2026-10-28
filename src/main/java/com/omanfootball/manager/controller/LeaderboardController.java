@@ -2,13 +2,17 @@ package com.omanfootball.manager.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
 
 import com.omanfootball.manager.entity.FantasyTeam;
-import com.omanfootball.manager.repository.FantasyTeamRepository;
+import com.omanfootball.manager.service.LeaderboardService;
 
 
 
@@ -19,15 +23,21 @@ public class LeaderboardController {
 
 
 
-    private final FantasyTeamRepository repository;
+    private final LeaderboardService service;
+
+
 
 
 
     @GetMapping
-    public List<FantasyTeam> getLeaderboard(){
+    public ResponseEntity<List<FantasyTeam>> getLeaderboard() {
 
 
-        return repository.findAll();
+
+        return ResponseEntity.ok(
+                service.getLeaderboard()
+        );
+
 
 
     }

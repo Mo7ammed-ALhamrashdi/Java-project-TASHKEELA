@@ -2,17 +2,17 @@ package com.omanfootball.manager.service;
 
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
-import com.omanfootball.manager.entity.FantasyTeam;
-import com.omanfootball.manager.entity.FantasyTeamPlayer;
-import com.omanfootball.manager.entity.Player;
 
+import com.omanfootball.manager.entity.FantasyTeam;
 import com.omanfootball.manager.repository.FantasyTeamRepository;
-import com.omanfootball.manager.repository.FantasyTeamPlayerRepository;
-import com.omanfootball.manager.repository.PlayerRepository;
+
 
 
 @Service
@@ -20,34 +20,30 @@ import com.omanfootball.manager.repository.PlayerRepository;
 public class FantasyTeamService {
 
 
-
-    private final FantasyTeamRepository teamRepository;
-
-
-    private final FantasyTeamPlayerRepository playerRepository;
-
-
-    private final PlayerRepository repository;
+    private final FantasyTeamRepository repository;
 
 
 
 
-    public FantasyTeam createTeam(
-            FantasyTeam team
-    ){
 
-        return teamRepository.save(team);
+    public List<FantasyTeam> getAllTeams() {
+
+        return repository.findAll();
 
     }
 
 
 
 
-    public FantasyTeam getTeam(Long id){
 
-        return teamRepository.findById(id)
+    public FantasyTeam getTeamById(Long id) {
+
+
+        return repository.findById(id)
                 .orElseThrow(
-                        () -> new RuntimeException("Team not found")
+                        () -> new RuntimeException(
+                                "Fantasy team not found with id: " + id
+                        )
                 );
 
     }
@@ -55,46 +51,77 @@ public class FantasyTeamService {
 
 
 
-    public FantasyTeamPlayer addPlayer(
-            Long teamId,
-            Long playerId
-    ){
 
+    @Transactional
+    public FantasyTeam createTeam(FantasyTeam team) {
 
-        FantasyTeam team =
-                getTeam(teamId);
+        return repository.save(team);
 
-
-
-        Player player =
-                repository.findById(playerId)
-                        .orElseThrow(
-                                () -> new RuntimeException(
-                                        "Player not found")
-                        );
+    }
 
 
 
-        FantasyTeamPlayer fp =
-                new FantasyTeamPlayer();
 
 
-        fp.setFantasyTeam(team);
+    @Transactional
+    public FantasyTeam updateTeam(
+            Long id,
+            FantasyTeam newTeam
+    ) {
 
-        fp.setPlayer(player);
 
-        fp.setIsCaptain(false);
+        FantasyTeam team = getTeamById(id);
 
-        fp.setPosition(player.getPosition());
 
-        fp.setPrice(player.getPrice());
 
-        fp.setOverallRating(
-                player.getOverallRating()
+        team.setTeamName(
+                newTeam.getTeamName()
         );
 
 
-        return playerRepository.save(fp);
+
+        team.setBudget(
+                newTeam.getBudget()
+        );
+
+
+
+        team.setTotalPoints(
+                newTeam.getTotalPoints()
+        );
+
+
+
+        team.setOverallRating(
+                newTeam.getOverallRating()
+        );
+
+
+
+        team.setUser(
+                newTeam.getUser()
+        );
+
+
+
+        return repository.save(team);
+
+    }
+
+
+
+
+
+    @Transactional
+    public void deleteTeam(Long id) {
+
+
+        FantasyTeam team = getTeamById(id);
+
+
+
+        repository.delete(team);
+
 
     }
 

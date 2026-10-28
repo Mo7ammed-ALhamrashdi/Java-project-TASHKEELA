@@ -1,13 +1,18 @@
 package com.omanfootball.manager.controller;
 
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 import com.omanfootball.manager.entity.Club;
 import com.omanfootball.manager.service.ClubService;
+
+
+import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.List;
 
 
 
@@ -18,50 +23,112 @@ public class ClubController {
 
 
 
-    private final ClubService clubService;
+    private final ClubService service;
+
+
 
 
 
     @GetMapping
-    public List<Club> getAll(){
+    public ResponseEntity<List<Club>> getAll() {
 
-        return clubService.getAllClubs();
+
+
+        return ResponseEntity.ok(
+                service.getAllClubs()
+        );
+
+
 
     }
+
+
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Club> getById(
+
+            @PathVariable Long id
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.getClubById(id)
+        );
+
+
+
+    }
+
 
 
 
 
     @PostMapping
-    public Club create(
+    public ResponseEntity<Club> create(
+
             @RequestBody Club club
-    ){
 
-        return clubService.createClub(club);
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.createClub(club)
+        );
+
+
+
+    }
+
+
+
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Club> update(
+
+            @PathVariable Long id,
+
+            @RequestBody Club club
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.updateClub(id, club)
+        );
+
+
 
     }
 
 
-
-    @GetMapping("/{id}")
-    public Club getById(
-            @PathVariable Long id
-    ){
-
-        return clubService.getClubById(id);
-
-    }
 
 
 
     @DeleteMapping("/{id}")
-    public String delete(
+    public ResponseEntity<String> delete(
+
             @PathVariable Long id
-    ){
 
-        clubService.deleteClub(id);
+    ) {
 
-        return "Club deleted";
+
+
+        service.deleteClub(id);
+
+
+
+        return ResponseEntity.ok(
+                "Club deleted successfully"
+        );
+
+
 
     }
 

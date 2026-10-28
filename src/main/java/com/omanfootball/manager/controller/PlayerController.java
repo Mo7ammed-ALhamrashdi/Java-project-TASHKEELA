@@ -2,7 +2,11 @@ package com.omanfootball.manager.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -19,39 +23,64 @@ public class PlayerController {
 
 
 
-    private final PlayerService playerService;
+    private final PlayerService service;
+
 
 
 
 
     @GetMapping
-    public List<Player> getAllPlayers(){
+    public ResponseEntity<List<Player>> getAll() {
 
-        return playerService.getAllPlayers();
+
+
+        return ResponseEntity.ok(
+                service.getAllPlayers()
+        );
+
+
 
     }
+
 
 
 
 
     @GetMapping("/{id}")
-    public Player getPlayer(
-            @PathVariable Long id
-    ){
+    public ResponseEntity<Player> getById(
 
-        return playerService.getPlayerById(id);
+            @PathVariable Long id
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.getPlayerById(id)
+        );
+
+
 
     }
 
 
 
 
-    @PostMapping
-    public Player createPlayer(
-            @RequestBody Player player
-    ){
 
-        return playerService.createPlayer(player);
+    @PostMapping
+    public ResponseEntity<Player> create(
+
+            @RequestBody Player player
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.createPlayer(player)
+        );
+
+
 
     }
 
@@ -60,29 +89,46 @@ public class PlayerController {
 
 
     @PutMapping("/{id}")
-    public Player updatePlayer(
-            @PathVariable Long id,
-            @RequestBody Player player
-    ){
+    public ResponseEntity<Player> update(
 
-        return playerService.updatePlayer(
-                id,
-                player
+            @PathVariable Long id,
+
+            @RequestBody Player player
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.updatePlayer(id, player)
         );
+
+
 
     }
 
 
 
 
+
     @DeleteMapping("/{id}")
-    public String deletePlayer(
+    public ResponseEntity<String> delete(
+
             @PathVariable Long id
-    ){
 
-        playerService.deletePlayer(id);
+    ) {
 
-        return "Player deleted";
+
+
+        service.deletePlayer(id);
+
+
+
+        return ResponseEntity.ok(
+                "Player deleted successfully"
+        );
+
+
 
     }
 

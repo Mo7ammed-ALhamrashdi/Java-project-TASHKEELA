@@ -2,7 +2,11 @@ package com.omanfootball.manager.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -13,7 +17,7 @@ import com.omanfootball.manager.service.PerformanceService;
 
 
 @RestController
-@RequestMapping("/api/performance")
+@RequestMapping("/api/performances")
 @RequiredArgsConstructor
 public class PerformanceController {
 
@@ -24,34 +28,107 @@ public class PerformanceController {
 
 
 
-    @GetMapping
-    public List<PlayerPerformance> getAll(){
 
-        return service.getAll();
+    @GetMapping
+    public ResponseEntity<List<PlayerPerformance>> getAll() {
+
+
+
+        return ResponseEntity.ok(
+                service.getAll()
+        );
+
+
 
     }
+
+
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PlayerPerformance> getById(
+
+            @PathVariable Long id
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.getById(id)
+        );
+
+
+
+    }
+
 
 
 
 
     @PostMapping
-    public PlayerPerformance create(
-            @RequestBody PlayerPerformance performance
-    ){
+    public ResponseEntity<PlayerPerformance> create(
 
-        return service.create(performance);
+            @RequestBody PlayerPerformance performance
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.create(performance)
+        );
+
+
 
     }
 
 
 
 
-    @GetMapping("/player/{id}")
-    public List<PlayerPerformance> getByPlayer(
-            @PathVariable Long id
-    ){
 
-        return service.getByPlayer(id);
+    @PutMapping("/{id}")
+    public ResponseEntity<PlayerPerformance> update(
+
+            @PathVariable Long id,
+
+            @RequestBody PlayerPerformance performance
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.update(id, performance)
+        );
+
+
+
+    }
+
+
+
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(
+
+            @PathVariable Long id
+
+    ) {
+
+
+
+        service.delete(id);
+
+
+
+        return ResponseEntity.ok(
+                "Performance deleted successfully"
+        );
+
+
 
     }
 

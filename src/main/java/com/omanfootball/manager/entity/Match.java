@@ -2,47 +2,73 @@ package com.omanfootball.manager.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+import java.time.LocalDateTime;
+
 
 
 @Entity
-@Table(name="matches")
+@Table(name = "matches")
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Match {
+
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long matchId;
+    private Long id;
 
 
 
-    private String matchDate;
+
+    @ManyToOne
+    @JoinColumn(name = "home_club_id")
+    private Club homeClub;
 
 
-    private String round;
+
+
+    @ManyToOne
+    @JoinColumn(name = "away_club_id")
+    private Club awayClub;
+
+
+
+
+
+    private LocalDateTime matchDate;
+
+
+
 
 
     private String venue;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="home_team_id")
-    private Club homeClub;
+
+
+    private int homeScore;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="away_team_id")
-    private Club awayClub;
+
+
+    private int awayScore;
 
 
 
-    @OneToMany(mappedBy="match")
-    private List<PlayerPerformance> performances;
+
+
+    private String status;
 
 
 }

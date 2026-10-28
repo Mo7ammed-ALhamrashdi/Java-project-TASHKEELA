@@ -1,13 +1,20 @@
 package com.omanfootball.manager.service;
 
 
+import com.omanfootball.manager.entity.Club;
+import com.omanfootball.manager.exception.ResourceNotFoundException;
+import com.omanfootball.manager.repository.ClubRepository;
+
+
 import lombok.RequiredArgsConstructor;
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
-import com.omanfootball.manager.entity.Club;
-import com.omanfootball.manager.repository.ClubRepository;
 
 
 @Service
@@ -21,7 +28,8 @@ public class ClubService {
 
 
 
-    public List<Club> getAllClubs(){
+
+    public List<Club> getAllClubs() {
 
         return clubRepository.findAll();
 
@@ -30,11 +38,15 @@ public class ClubService {
 
 
 
-    public Club getClubById(Long id){
+
+    public Club getClubById(Long id) {
+
 
         return clubRepository.findById(id)
                 .orElseThrow(
-                        () -> new RuntimeException("Club not found")
+                        () -> new ResourceNotFoundException(
+                                "Club not found with id: " + id
+                        )
                 );
 
     }
@@ -42,7 +54,9 @@ public class ClubService {
 
 
 
-    public Club createClub(Club club){
+
+    @Transactional
+    public Club createClub(Club club) {
 
         return clubRepository.save(club);
 
@@ -51,9 +65,70 @@ public class ClubService {
 
 
 
-    public void deleteClub(Long id){
 
-        clubRepository.deleteById(id);
+    @Transactional
+    public Club updateClub(
+            Long id,
+            Club updatedClub
+    ) {
+
+
+        Club existingClub = getClubById(id);
+
+
+
+        existingClub.setClubName(
+                updatedClub.getClubName()
+        );
+
+
+
+        existingClub.setShortName(
+                updatedClub.getShortName()
+        );
+
+
+
+        existingClub.setCity(
+                updatedClub.getCity()
+        );
+
+
+
+        existingClub.setLogo(
+                updatedClub.getLogo()
+        );
+
+
+
+        existingClub.setDescription(
+                updatedClub.getDescription()
+        );
+
+
+
+        existingClub.setTrophies(
+                updatedClub.getTrophies()
+        );
+
+
+
+        return clubRepository.save(existingClub);
+
+    }
+
+
+
+
+
+    @Transactional
+    public void deleteClub(Long id) {
+
+
+        Club club = getClubById(id);
+
+
+        clubRepository.delete(club);
 
     }
 

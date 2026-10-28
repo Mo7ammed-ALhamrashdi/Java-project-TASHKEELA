@@ -1,55 +1,64 @@
 package com.omanfootball.manager.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 
 @Entity
-@Table(name="match_statistics")
+@Table(name = "player_performance")
 @Data
 public class PlayerPerformance {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long stateId;
+    private Long performanceId;
 
 
 
-    private Integer goals;
-
-
-    private Integer assists;
-
-
-    private Integer yellowCards;
-
-
-    private Integer redCards;
-
-
-    private Double passAccuracy;
-
-
-    private Integer minutesPlayed;
-
-
-    private Boolean cleanSheet;
-
-
-    private Boolean manOfMatch;
+    private Integer goals = 0;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="match_id")
+    private Integer assists = 0;
+
+
+
+    private Integer yellowCards = 0;
+
+
+
+    private Integer redCards = 0;
+
+
+
+    private Double passAccuracy = 0.0;
+
+
+
+    private Integer minutesPlayed = 0;
+
+
+
+    private Boolean cleanSheet = false;
+
+
+
+    private Boolean manOfMatch = false;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "match_id")
+    @JsonIgnore
     private Match match;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="player_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
+    @JsonIgnore
     private Player player;
 
 

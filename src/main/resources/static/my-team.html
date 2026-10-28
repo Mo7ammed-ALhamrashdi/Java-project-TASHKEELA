@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        TASHKEELA My Team
+    </title>
+
+
+    <link rel="stylesheet" href="/style.css">
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+
+    <div class="logo-area">
+
+
+        <img src="/images/logo.png">
+
+
+        <div class="logo-title">
+
+            TASHKEELA
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="nav-links">
+
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+
+        <a href="players.html">
+            Players
+        </a>
+
+
+        <a href="my-team.html">
+            My Team
+        </a>
+
+
+        <a href="clubs.html">
+            Clubs
+        </a>
+
+
+        <a href="matches.html">
+            Matches
+        </a>
+
+
+        <a href="ai.html">
+            AI Advisor
+        </a>
+
+
+        <a href="leaderboard.html">
+            Leaderboard
+        </a>
+
+
+
+
+        <button class="language-btn"
+                onclick="changeLanguage()">
+
+            AR
+
+        </button>
+
+
+
+
+        <a onclick="logout()">
+
+            Logout
+
+        </a>
+
+
+
+    </div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+    <h1>
+
+        ⚽ My Fantasy Team
+
+    </h1>
+
+
+
+    <p>
+
+        Build your dream Oman fantasy squad
+
+    </p>
+
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+
+    <!-- TEAM STATS -->
+
+
+    <div class="stats">
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                Budget
+
+            </h3>
+
+
+            <h1>
+
+                100M
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                Used
+
+            </h3>
+
+
+            <h1>
+
+                72M
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                Fantasy Points
+
+            </h3>
+
+
+            <h1>
+
+                850
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="card stat">
+
+
+            <h3>
+
+                Team Rating
+
+            </h3>
+
+
+            <h1>
+
+                88
+
+            </h1>
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+    <h1>
+
+        Formation 4 - 3 - 3
+
+    </h1>
+
+
+
+
+
+
+
+
+    <!-- FOOTBALL FIELD -->
+
+
+    <div class="field">
+
+
+
+        <div class="position">
+
+            ST
+
+        </div>
+
+
+
+        <div class="position">
+
+            LW
+
+        </div>
+
+
+
+        <div class="position">
+
+            RW
+
+        </div>
+
+
+
+        <div class="position">
+
+            CM
+
+        </div>
+
+
+
+        <div class="position">
+
+            CM
+
+        </div>
+
+
+
+        <div class="position">
+
+            CM
+
+        </div>
+
+
+
+        <div class="position">
+
+            LB
+
+        </div>
+
+
+
+        <div class="position">
+
+            CB
+
+        </div>
+
+
+
+        <div class="position">
+
+            CB
+
+        </div>
+
+
+
+        <div class="position">
+
+            RB
+
+        </div>
+
+
+
+        <div class="position">
+
+            GK
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+    <h1>
+
+        Starting XI
+
+    </h1>
+
+
+
+
+
+
+
+    <div class="players-grid">
+
+
+
+
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Ahmed Al Khausi
+
+            </h2>
+
+
+
+            <p>
+
+                Al Seeb FC
+
+            </p>
+
+
+
+            <p>
+
+                Forward
+
+            </p>
+
+
+
+            <p class="rating">
+
+                90 ⭐
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Change
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Ali Al Habsi
+
+            </h2>
+
+
+
+            <p>
+
+                Dhofar FC
+
+            </p>
+
+
+
+            <p>
+
+                Goalkeeper
+
+            </p>
+
+
+
+            <p class="rating">
+
+                86 ⭐
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Change
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Omar Al Rashdi
+
+            </h2>
+
+
+
+            <p>
+
+                Al Nahda FC
+
+            </p>
+
+
+
+            <p>
+
+                Midfielder
+
+            </p>
+
+
+
+            <p class="rating">
+
+                88 ⭐
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Change
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+
+    <div class="ai-box">
+
+
+        <h2>
+
+            🤖 AI Team Coach
+
+        </h2>
+
+
+
+        <p>
+
+            AI recommends improving midfield strength
+            to increase fantasy points.
+
+        </p>
+
+
+
+
+        <br>
+
+
+
+        <a href="ai.html">
+
+            <button class="btn">
+
+                Improve Team
+
+            </button>
+
+
+        </a>
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="/script.js"></script>
+
+
+
+</body>
+
+
+</html>

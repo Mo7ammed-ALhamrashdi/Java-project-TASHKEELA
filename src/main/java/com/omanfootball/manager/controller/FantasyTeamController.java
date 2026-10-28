@@ -2,64 +2,133 @@ package com.omanfootball.manager.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import com.omanfootball.manager.entity.FantasyTeam;
-import com.omanfootball.manager.entity.FantasyTeamPlayer;
+import java.util.List;
 
+
+import com.omanfootball.manager.entity.FantasyTeam;
 import com.omanfootball.manager.service.FantasyTeamService;
 
 
 
 @RestController
-@RequestMapping("/api/fantasy-team")
+@RequestMapping("/api/fantasy-teams")
 @RequiredArgsConstructor
 public class FantasyTeamController {
 
 
-    private final FantasyTeamService fantasyTeamService;
+
+    private final FantasyTeamService service;
 
 
 
-    // Create fantasy team
 
-    @PostMapping
-    public FantasyTeam createTeam(
-            @RequestBody FantasyTeam team
-    ){
 
-        return fantasyTeamService.createTeam(team);
-
-    }
+    @GetMapping
+    public ResponseEntity<List<FantasyTeam>> getAll() {
 
 
 
-    // Add player to team
-
-    @PostMapping("/{teamId}/add-player/{playerId}")
-    public FantasyTeamPlayer addPlayer(
-            @PathVariable Long teamId,
-            @PathVariable Long playerId
-    ){
-
-        return fantasyTeamService.addPlayer(
-                teamId,
-                playerId
+        return ResponseEntity.ok(
+                service.getAllTeams()
         );
 
+
+
     }
 
 
 
-    // Get team
+
 
     @GetMapping("/{id}")
-    public FantasyTeam getTeam(
-            @PathVariable Long id
-    ){
+    public ResponseEntity<FantasyTeam> getById(
 
-        return fantasyTeamService.getTeam(id);
+            @PathVariable Long id
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.getTeamById(id)
+        );
+
+
+
+    }
+
+
+
+
+
+    @PostMapping
+    public ResponseEntity<FantasyTeam> create(
+
+            @RequestBody FantasyTeam team
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.createTeam(team)
+        );
+
+
+
+    }
+
+
+
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<FantasyTeam> update(
+
+            @PathVariable Long id,
+
+            @RequestBody FantasyTeam team
+
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                service.updateTeam(id, team)
+        );
+
+
+
+    }
+
+
+
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(
+
+            @PathVariable Long id
+
+    ) {
+
+
+
+        service.deleteTeam(id);
+
+
+
+        return ResponseEntity.ok(
+                "Fantasy team deleted successfully"
+        );
+
+
 
     }
 

@@ -1,12 +1,15 @@
 package com.omanfootball.manager.controller;
 
 
+import com.omanfootball.manager.entity.AIFantasyPoints;
+import com.omanfootball.manager.service.AIService;
+
+
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
-import com.omanfootball.manager.entity.AIRating;
-import com.omanfootball.manager.service.AIRatingService;
 
 
 
@@ -17,34 +20,54 @@ public class AIController {
 
 
 
-    private final AIRatingService aiRatingService;
+    private final AIService service;
 
 
 
-    // Create AI rating
 
-    @PostMapping("/rating")
-    public AIRating createRating(
-            @RequestBody AIRating rating
-    ){
-
-        return aiRatingService.createRating(
-                rating
-        );
-
-    }
-
-
-
-    // Get player AI rating
 
     @GetMapping("/player/{id}")
-    public AIRating getPlayerRating(
-            @PathVariable Long id
-    ){
+    public ResponseEntity<AIFantasyPoints> analyzePlayer(
 
-        return aiRatingService
-                .getRatingByPlayer(id);
+            @PathVariable Long id,
+
+            @RequestParam int goals,
+
+            @RequestParam int assists,
+
+            @RequestParam int appearances,
+
+            @RequestParam double price,
+
+            @RequestParam double rating
+
+    ) {
+
+
+
+        AIFantasyPoints result =
+
+                service.analyzePlayer(
+
+                        id,
+
+                        goals,
+
+                        assists,
+
+                        appearances,
+
+                        price,
+
+                        rating
+
+                );
+
+
+
+        return ResponseEntity.ok(result);
+
+
 
     }
 

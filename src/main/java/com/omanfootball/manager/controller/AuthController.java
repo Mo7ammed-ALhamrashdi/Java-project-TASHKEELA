@@ -2,9 +2,18 @@ package com.omanfootball.manager.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import com.omanfootball.manager.dto.LoginRequest;
+import com.omanfootball.manager.dto.LoginResponse;
+import com.omanfootball.manager.dto.OtpRequest;
+
 import com.omanfootball.manager.entity.User;
+
 import com.omanfootball.manager.service.AuthService;
 
 
@@ -12,37 +21,158 @@ import com.omanfootball.manager.service.AuthService;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AuthController {
+
 
 
     private final AuthService authService;
 
 
 
+
+
+    // =========================
+    // REGISTER
+    // =========================
+
     @PostMapping("/register")
-    public User register(
+    public ResponseEntity<User> register(
+
             @RequestBody User user
+
     ){
 
-        return authService.register(user);
 
-    }
+        User newUser =
+
+                authService.register(user);
 
 
 
-
-    @PostMapping("/login")
-    public User login(
-            @RequestParam String email,
-            @RequestParam String password
-    ){
-
-        return authService.login(
-                email,
-                password
+        return ResponseEntity.ok(
+                newUser
         );
 
+
     }
+
+
+
+
+
+    // =========================
+    // LOGIN
+    // EMAIL + PASSWORD
+    // SEND OTP
+    // =========================
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(
+
+            @RequestBody LoginRequest request
+
+    ){
+
+
+
+        LoginResponse response =
+
+                authService.login(
+
+                        request.getEmail(),
+
+                        request.getPassword()
+
+                );
+
+
+
+        return ResponseEntity.ok(
+                response
+        );
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    // =========================
+    // FORGOT PASSWORD
+    // SEND OTP
+    // =========================
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(
+
+            @RequestBody OtpRequest request
+
+    ){
+
+
+
+        authService.sendResetOtp(
+
+                request.getEmail()
+
+        );
+
+
+
+        return ResponseEntity.ok(
+                "OTP sent"
+        );
+
+
+
+    }
+
+
+
+
+
+    // =========================
+    // RESET PASSWORD
+    // =========================
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(
+
+            @RequestBody OtpRequest request
+
+    ){
+
+
+
+        authService.resetPassword(
+
+                request.getEmail(),
+
+                request.getOtp(),
+
+                request.getPassword()
+
+        );
+
+
+
+        return ResponseEntity.ok(
+                "Password changed successfully"
+        );
+
+
+
+    }
+
 
 
 }

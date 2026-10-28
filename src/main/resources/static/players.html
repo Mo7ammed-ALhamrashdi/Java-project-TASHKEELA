@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        TASHKEELA Players
+    </title>
+
+
+    <link rel="stylesheet" href="/style.css">
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+
+    <div class="logo-area">
+
+
+        <img src="/images/logo.png">
+
+
+        <div class="logo-title">
+
+            TASHKEELA
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="nav-links">
+
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+
+        <a href="players.html">
+            Players
+        </a>
+
+
+        <a href="my-team.html">
+            My Team
+        </a>
+
+
+        <a href="clubs.html">
+            Clubs
+        </a>
+
+
+        <a href="matches.html">
+            Matches
+        </a>
+
+
+        <a href="ai.html">
+            AI Advisor
+        </a>
+
+
+        <a href="leaderboard.html">
+            Leaderboard
+        </a>
+
+
+
+
+        <button class="language-btn"
+                onclick="changeLanguage()">
+
+            AR
+
+        </button>
+
+
+
+
+        <a onclick="logout()">
+
+            Logout
+
+        </a>
+
+
+
+    </div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+    <h1>
+
+        🇴🇲 Omani Players Market
+
+    </h1>
+
+
+
+    <p>
+
+        Choose your players and build your fantasy team
+
+    </p>
+
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+    <div class="players-grid">
+
+
+
+
+
+
+
+        <!-- PLAYER 1 -->
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Ahmed Al Khausi
+
+            </h2>
+
+
+
+            <p>
+
+                Club: Al Seeb FC
+
+            </p>
+
+
+
+            <p>
+
+                Position: Forward
+
+            </p>
+
+
+
+            <p class="rating">
+
+                ⭐ 88
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 150
+
+            </p>
+
+
+
+            <p>
+
+                Value: 25M
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- PLAYER 2 -->
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Ali Al Habsi
+
+            </h2>
+
+
+
+            <p>
+
+                Club: Dhofar FC
+
+            </p>
+
+
+
+            <p>
+
+                Position: Goalkeeper
+
+            </p>
+
+
+
+            <p class="rating">
+
+                ⭐ 86
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 140
+
+            </p>
+
+
+
+            <p>
+
+                Value: 20M
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- PLAYER 3 -->
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Omar Al Rashdi
+
+            </h2>
+
+
+
+            <p>
+
+                Club: Al Nahda FC
+
+            </p>
+
+
+
+            <p>
+
+                Position: Midfielder
+
+            </p>
+
+
+
+            <p class="rating">
+
+                ⭐ 90
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 170
+
+            </p>
+
+
+
+            <p>
+
+                Value: 30M
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- PLAYER 4 -->
+
+
+        <div class="player-card">
+
+
+            <img src="/images/logo.png">
+
+
+            <h2>
+
+                Salim Al Yahmadi
+
+            </h2>
+
+
+
+            <p>
+
+                Club: Sohar FC
+
+            </p>
+
+
+
+            <p>
+
+                Position: Defender
+
+            </p>
+
+
+
+            <p class="rating">
+
+                ⭐ 84
+
+            </p>
+
+
+
+            <p>
+
+                Fantasy Points: 120
+
+            </p>
+
+
+
+            <p>
+
+                Value: 18M
+
+            </p>
+
+
+
+            <button class="btn">
+
+                Add Team
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+
+    <div class="ai-box">
+
+
+        <h2>
+
+            🤖 AI Player Analysis
+
+        </h2>
+
+
+
+        <p>
+
+            AI analyzes player performance,
+            rating and fantasy value to help you choose the best Omani players.
+
+        </p>
+
+
+
+        <br>
+
+
+
+        <a href="ai.html">
+
+            <button class="btn">
+
+                Analyze Players
+
+            </button>
+
+
+        </a>
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="/script.js"></script>
+
+
+
+</body>
+
+
+</html>

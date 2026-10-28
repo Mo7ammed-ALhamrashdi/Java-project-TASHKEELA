@@ -1,15 +1,16 @@
 package com.omanfootball.manager.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 
 @Entity
-@Table(name="fantasy_player")
+@Table(name = "fantasy_team_player")
 @Data
 public class FantasyTeamPlayer {
-
 
 
     @Id
@@ -21,25 +22,47 @@ public class FantasyTeamPlayer {
     private String position;
 
 
+
     private Double price;
+
 
 
     private Integer overallRating;
 
 
-    private Boolean isCaptain;
+
+    private Boolean isCaptain = false;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="team_id")
+    private LocalDateTime selectedAt;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    @JsonIgnore
     private FantasyTeam fantasyTeam;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="player_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
+    @JsonIgnore
     private Player player;
 
+
+
+    @PrePersist
+    public void onCreate() {
+
+        this.selectedAt = LocalDateTime.now();
+
+
+        if (this.isCaptain == null) {
+            this.isCaptain = false;
+        }
+
+    }
 
 }

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        TASHKEELA AI Advisor
+    </title>
+
+
+    <link rel="stylesheet" href="/style.css">
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+
+    <div class="logo-area">
+
+
+        <img src="/images/logo.png">
+
+
+        <div class="logo-title">
+
+            TASHKEELA
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="nav-links">
+
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+
+        <a href="players.html">
+            Players
+        </a>
+
+
+        <a href="my-team.html">
+            My Team
+        </a>
+
+
+        <a href="clubs.html">
+            Clubs
+        </a>
+
+
+        <a href="matches.html">
+            Matches
+        </a>
+
+
+        <a href="ai.html">
+            AI Advisor
+        </a>
+
+
+        <a href="leaderboard.html">
+            Leaderboard
+        </a>
+
+
+
+
+        <button class="language-btn"
+                onclick="changeLanguage()">
+
+            AR
+
+        </button>
+
+
+
+
+        <a onclick="logout()">
+
+            Logout
+
+        </a>
+
+
+
+    </div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+    <h1>
+
+        🤖 AI Football Advisor
+
+    </h1>
+
+
+
+    <p>
+
+        Smart analysis for your fantasy team
+
+    </p>
+
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+
+
+    <div class="ai-box">
+
+
+
+
+
+        <h2>
+
+            Player Analysis
+
+        </h2>
+
+
+
+        <p>
+
+            Enter player ID to get AI prediction
+
+        </p>
+
+
+
+
+
+        <input
+
+                id="playerId"
+
+                type="number"
+
+                placeholder="Player ID"
+
+                style="
+padding:15px;
+width:100%;
+border-radius:10px;
+margin:15px 0;
+"
+
+        >
+
+
+
+
+
+
+
+        <button class="btn"
+                onclick="aiAnalysis()">
+
+            Analyze Player
+
+        </button>
+
+
+
+
+
+
+
+        <div id="result"
+
+             style="
+margin-top:30px;
+">
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+
+    <div class="ai-box">
+
+
+
+
+
+        <h2>
+
+            💡 AI Team Suggestions
+
+        </h2>
+
+
+
+
+
+        <p>
+
+            ⭐ Use 4-3-3 formation
+
+        </p>
+
+
+
+        <p>
+
+            ⭐ Select high rating Omani players
+
+        </p>
+
+
+
+        <p>
+
+            ⭐ Improve midfield performance
+
+        </p>
+
+
+
+        <p>
+
+            ⭐ Check player fitness before matches
+
+        </p>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+
+
+
+
+
+
+    <div class="ai-box">
+
+
+
+
+
+        <h2>
+
+            Chat With AI Coach
+
+        </h2>
+
+
+
+
+
+
+
+        <p>
+
+            Ask AI about your fantasy decisions
+
+        </p>
+
+
+
+
+
+
+
+
+        <input
+
+                id="aiQuestion"
+
+                placeholder="Ask your question..."
+
+                style="
+padding:15px;
+width:100%;
+border-radius:10px;
+margin:15px 0;
+"
+
+        >
+
+
+
+
+
+
+
+        <button class="btn"
+                onclick="askAI()">
+
+            Ask AI
+
+        </button>
+
+
+
+
+
+
+
+        <div id="aiResult"
+
+             style="
+margin-top:25px;
+">
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="/script.js"></script>
+
+
+
+</body>
+
+
+</html>

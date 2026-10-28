@@ -1,0 +1,452 @@
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    margin:0;
+    color:white;
+
+    background:
+            linear-gradient(
+                    rgba(0,25,20,.85),
+                    rgba(0,25,20,.85)
+            ),
+            url("images/stadium.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+}
+
+
+/* ================= LOGIN ================= */
+
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.login-container{
+
+    width:900px;
+
+    display:flex;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.1);
+
+    backdrop-filter:blur(15px);
+
+}
+
+
+
+.brand-section{
+
+    width:50%;
+
+    padding:50px;
+
+    text-align:center;
+
+    background:rgba(0,0,0,.25);
+
+}
+
+
+
+.main-logo{
+
+    width:200px;
+
+    height:200px;
+
+    object-fit:contain;
+
+}
+
+
+
+.brand-section h1{
+
+    font-size:45px;
+
+}
+
+
+
+.brand-section p{
+
+    font-size:20px;
+
+    color:#ddd;
+
+}
+
+
+
+.login-card{
+
+    width:50%;
+
+    padding:60px;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+
+
+.login-card input{
+
+    width:100%;
+
+    padding:16px;
+
+    margin:12px 0;
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+
+
+.login-card button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#e30613;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+
+.forgot{
+
+    display:block;
+
+    text-align:right;
+
+    color:white;
+
+}
+
+
+
+
+/* ================= NAVBAR ================= */
+
+
+.navbar{
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 40px;
+
+    background:rgba(0,0,0,.5);
+
+    backdrop-filter:blur(10px);
+
+}
+
+
+
+.logo-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.logo-area img{
+
+    width:60px;
+
+    height:60px;
+
+    object-fit:contain;
+
+}
+
+
+
+.logo-title{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#e30613;
+
+}
+
+
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+}
+
+
+
+.language-btn{
+
+    background:#e30613;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:20px;
+
+}
+
+
+
+
+
+/* ================= DASHBOARD ================= */
+
+
+.container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+}
+
+
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.card{
+
+    background:rgba(255,255,255,.12);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    backdrop-filter:blur(10px);
+
+}
+
+
+
+.stat h1{
+
+    color:#e30613;
+
+}
+
+
+
+
+
+.ai-box{
+
+    margin-top:30px;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:rgba(0,0,0,.4);
+
+    border:1px solid #e30613;
+
+}
+
+
+
+.btn{
+
+    background:#e30613;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 30px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+/* ================= PLAYERS ================= */
+
+
+.players-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.player-card{
+
+    background:rgba(255,255,255,.12);
+
+    padding:25px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+}
+
+
+
+.player-card img{
+
+    width:120px;
+
+    height:120px;
+
+    object-fit:contain;
+
+}
+
+
+
+.rating{
+
+    color:#ffd700;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+    .login-container{
+
+        flex-direction:column;
+
+    }
+
+
+
+    .brand-section,
+    .login-card{
+
+        width:100%;
+
+    }
+
+
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .players-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+
+}

@@ -1,43 +1,49 @@
 package com.omanfootball.manager.config;
 
 
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
-
 import com.omanfootball.manager.entity.Club;
 import com.omanfootball.manager.entity.Player;
+
 
 import com.omanfootball.manager.repository.ClubRepository;
 import com.omanfootball.manager.repository.PlayerRepository;
 
 
+import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+
 
 @Component
 @RequiredArgsConstructor
-public class DataSeeder
-        implements CommandLineRunner {
+public class DataSeeder implements CommandLineRunner {
 
 
 
     private final ClubRepository clubRepository;
 
+
+
     private final PlayerRepository playerRepository;
 
 
 
+
+
     @Override
-    public void run(String... args){
+    public void run(String... args) {
 
 
 
-        if(clubRepository.count()==0){
+        if (clubRepository.count() == 0) {
 
 
 
             Club club = new Club();
+
 
 
             club.setClubName(
@@ -45,16 +51,21 @@ public class DataSeeder
             );
 
 
+
             club.setShortName(
                     "SEEB"
             );
+
 
 
             clubRepository.save(club);
 
 
 
+
+
             Player player = new Player();
+
 
 
             player.setName(
@@ -62,12 +73,15 @@ public class DataSeeder
             );
 
 
+
             player.setPosition(
                     "Forward"
             );
 
 
+
             player.setAge(25);
+
 
 
             player.setPrice(
@@ -75,16 +89,21 @@ public class DataSeeder
             );
 
 
+
             player.setOverallRating(
                     85
             );
 
 
-            player.setClub(club);
+
+            player.setClub(
+                    club
+            );
 
 
 
             playerRepository.save(player);
+
 
 
         }

@@ -1,18 +1,16 @@
 package com.omanfootball.manager.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-
 
 import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name="rating_history")
+@Table(name = "rating_history")
 @Data
 public class RatingHistory {
-
 
 
     @Id
@@ -24,19 +22,43 @@ public class RatingHistory {
     private Integer oldRating;
 
 
+
     private Integer newRating;
 
 
+
     private String reason;
+
 
 
     private LocalDateTime changeDate;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="player_id")
+    private LocalDateTime createdAt;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
+    @JsonIgnore
     private Player player;
 
+
+
+    @PrePersist
+    public void createDate() {
+
+        LocalDateTime now = LocalDateTime.now();
+
+
+        if (this.changeDate == null) {
+            this.changeDate = now;
+        }
+
+
+        this.createdAt = now;
+
+    }
 
 }

@@ -1,13 +1,20 @@
 package com.omanfootball.manager.service;
 
 
+import com.omanfootball.manager.entity.Player;
+import com.omanfootball.manager.exception.ResourceNotFoundException;
+import com.omanfootball.manager.repository.PlayerRepository;
+
+
 import lombok.RequiredArgsConstructor;
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
-import com.omanfootball.manager.entity.Player;
-import com.omanfootball.manager.repository.PlayerRepository;
 
 
 @Service
@@ -15,11 +22,14 @@ import com.omanfootball.manager.repository.PlayerRepository;
 public class PlayerService {
 
 
+
     private final PlayerRepository playerRepository;
 
 
 
-    public List<Player> getAllPlayers(){
+
+
+    public List<Player> getAllPlayers() {
 
         return playerRepository.findAll();
 
@@ -27,18 +37,26 @@ public class PlayerService {
 
 
 
-    public Player getPlayerById(Long id){
+
+
+    public Player getPlayerById(Long id) {
+
 
         return playerRepository.findById(id)
                 .orElseThrow(
-                        () -> new RuntimeException("Player not found")
+                        () -> new ResourceNotFoundException(
+                                "Player not found with id: " + id
+                        )
                 );
 
     }
 
 
 
-    public Player createPlayer(Player player){
+
+
+    @Transactional
+    public Player createPlayer(Player player) {
 
         return playerRepository.save(player);
 
@@ -46,28 +64,74 @@ public class PlayerService {
 
 
 
+
+
+    @Transactional
     public Player updatePlayer(
             Long id,
             Player newPlayer
-    ){
+    ) {
 
 
         Player player = getPlayerById(id);
 
 
-        player.setName(newPlayer.getName());
 
-        player.setPosition(newPlayer.getPosition());
+        player.setName(
+                newPlayer.getName()
+        );
 
-        player.setAge(newPlayer.getAge());
 
-        player.setPrice(newPlayer.getPrice());
+
+        player.setPosition(
+                newPlayer.getPosition()
+        );
+
+
+
+        player.setAge(
+                newPlayer.getAge()
+        );
+
+
+
+        player.setPrice(
+                newPlayer.getPrice()
+        );
+
+
+
 
         player.setOverallRating(
                 newPlayer.getOverallRating()
         );
 
 
+
+        player.setFantasyPoints(
+                newPlayer.getFantasyPoints()
+        );
+
+
+
+        player.setNationality(
+                newPlayer.getNationality()
+        );
+
+
+
+        player.setImage(
+                newPlayer.getImage()
+        );
+
+
+
+        player.setClub(
+                newPlayer.getClub()
+        );
+
+
+
         return playerRepository.save(player);
 
     }
@@ -75,11 +139,36 @@ public class PlayerService {
 
 
 
-    public void deletePlayer(Long id){
 
-        playerRepository.deleteById(id);
+    @Transactional
+    public void deletePlayer(Long id) {
+
+
+        Player player = getPlayerById(id);
+
+
+        playerRepository.delete(player);
 
     }
+
+
+
+
+    public List<Player> getPlayersByClub(Long clubId) {
+
+        return playerRepository.findByClub_Id(clubId);
+    }
+
+
+
+
+
+    public List<Player> getPlayersByPosition(String position) {
+
+        return playerRepository.findByPosition(position);
+
+    }
+
 
 
 }

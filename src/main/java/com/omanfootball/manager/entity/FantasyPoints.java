@@ -1,12 +1,14 @@
 package com.omanfootball.manager.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 
 @Entity
-@Table(name="fantasy_points")
+@Table(name = "fantasy_points")
 @Data
 public class FantasyPoints {
 
@@ -20,28 +22,44 @@ public class FantasyPoints {
     private Integer points;
 
 
+
     private Double multiplier;
 
 
+
+    @Column(columnDefinition = "TEXT")
     private String explanation;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="match_id")
+    private LocalDateTime createdAt;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "match_id")
+    @JsonIgnore
     private Match match;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="team_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    @JsonIgnore
     private FantasyTeam fantasyTeam;
 
 
 
-    @ManyToOne
-    @JoinColumn(name="player_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
+    @JsonIgnore
     private Player player;
 
+
+
+    @PrePersist
+    public void createDate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
 }

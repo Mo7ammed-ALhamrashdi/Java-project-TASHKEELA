@@ -2,45 +2,48 @@ package com.omanfootball.manager.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name="clubs")
+@Table(name = "clubs")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Club {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long clubId;
+    private Long id;
 
 
 
+    @Column(nullable = false)
     private String clubName;
 
 
+
     private String shortName;
+
+
+
+    private String city;
+
 
 
     private String logo;
 
 
 
-    @OneToMany(mappedBy="club")
-    private List<Player> players;
+    private String description;
 
 
 
-    @OneToMany(mappedBy="homeClub")
-    private List<Match> homeMatches;
-
-
-
-    @OneToMany(mappedBy="awayClub")
-    private List<Match> awayMatches;
+    private int trophies;
 
 
 }

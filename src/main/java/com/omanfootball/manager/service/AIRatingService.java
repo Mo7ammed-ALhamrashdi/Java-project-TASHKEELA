@@ -1,13 +1,14 @@
 package com.omanfootball.manager.service;
 
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import com.omanfootball.manager.entity.AIRating;
 import com.omanfootball.manager.repository.AIRatingRepository;
-
 
 
 @Service
@@ -15,19 +16,33 @@ import com.omanfootball.manager.repository.AIRatingRepository;
 public class AIRatingService {
 
 
-
     private final AIRatingRepository repository;
 
 
 
-    public AIRating createRating(
-            AIRating rating
-    ){
+    public List<AIRating> getAllRatings() {
 
-        rating.setAnalysis(
-                generateAnalysis(rating)
-        );
+        return repository.findAll();
 
+    }
+
+
+
+    public AIRating getRatingById(Long id) {
+
+        return repository.findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException(
+                                "AI rating not found with id: " + id
+                        )
+                );
+
+    }
+
+
+
+    @Transactional
+    public AIRating createRating(AIRating rating) {
 
         return repository.save(rating);
 
@@ -35,42 +50,77 @@ public class AIRatingService {
 
 
 
+    @Transactional
+    public AIRating updateRating(
+            Long id,
+            AIRating updatedRating
+    ) {
 
-    public AIRating getRatingByPlayer(
-            Long playerId
-    ){
 
-        return repository
-                .findByPlayerPlayerId(playerId);
+        AIRating existingRating = getRatingById(id);
+
+
+
+        existingRating.setOverall(
+                updatedRating.getOverall()
+        );
+
+
+
+        existingRating.setPassing(
+                updatedRating.getPassing()
+        );
+
+
+
+        existingRating.setDefense(
+                updatedRating.getDefense()
+        );
+
+
+
+        existingRating.setPhysical(
+                updatedRating.getPhysical()
+        );
+
+
+
+        existingRating.setPredictionScore(
+                updatedRating.getPredictionScore()
+        );
+
+
+
+        existingRating.setRecommendation(
+                updatedRating.getRecommendation()
+        );
+
+
+
+        existingRating.setAnalysis(
+                updatedRating.getAnalysis()
+        );
+
+
+
+        existingRating.setPlayer(
+                updatedRating.getPlayer()
+        );
+
+
+
+        return repository.save(existingRating);
 
     }
 
 
 
+    @Transactional
+    public void deleteRating(Long id) {
 
-    private String generateAnalysis(
-            AIRating rating
-    ){
+        AIRating rating = getRatingById(id);
 
-
-        if(rating.getOverall() >= 85){
-
-            return "Excellent player with high performance";
-
-
-        }else if(rating.getOverall() >=70){
-
-
-            return "Good player with potential improvement";
-
-
-        }else{
-
-
-            return "Player needs development";
-
-        }
-
+        repository.delete(rating);
 
     }
 
